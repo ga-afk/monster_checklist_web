@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Мій Monster Чек-лист</h1>
+<form method="post">
+  <div class="list-group">
+    {% for name, info in checklist.items() %}
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ name }}</span>
+        <select class="form-select w-auto" name="{{ name }}">
+          <option value="not_tried" {% if info.tried == 'not_tried' %}selected{% endif %}>❌ Не пробував</option>
+          <option value="tried" {% if info.tried == 'tried' %}selected{% endif %}>✅ Пробував</option>
+          <option value="sometimes" {% if info.tried == 'sometimes' %}selected{% endif %}>🤔 Іноді</option>
+          <option value="maybe" {% if info.tried == 'maybe' %}selected{% endif %}>❓ Можливо</option>
+        </select>
+      </div>
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Зберегти</button>
+</form>
+{% endblock %}

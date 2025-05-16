@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Checklist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: auto; padding: 1em; }
+        h1 { text-align: center; }
+        .item { margin: 5px 0; }
+        input[type=submit] {
+            background: #333; color: white; padding: 10px; border: none; border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monster Checklist</h1>
+    <form method="POST">
+        {% for item, checked in checklist.items() %}
+            <div class="item">
+                <input type="checkbox" id="{{ item }}" name="{{ item }}" {% if checked %}checked{% endif %}>
+                <label for="{{ item }}">{{ item }}</label>
+            </div>
+        {% endfor %}
+        <input type="submit" value="Зберегти">
+    </form>
+</body>
+</html>
